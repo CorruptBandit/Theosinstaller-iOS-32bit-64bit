@@ -1,0 +1,12 @@
+Package: com.moose.theosinst
+Name: Theos Installer (32bit/64bit)
+Description: Install Theos on 32bit or 64bit device.
+Priority: Standard
+Author: Moose <gathering011@gmail.com>
+Maintainer: Moose <gathering011@gmail.com>
+Depends: org.thebigboss.cacerts, expat, uuid, coreutils, unzip, coreutils-bin, rsync, make
+Section: system
+Tag: role::hacker, purpose::console
+Architecture: iphoneos-arm
+Version: 0.3
+Depiction: https://memoose.github.io/repo/depic/theosinst.html
