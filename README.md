@@ -2,7 +2,7 @@
 Install Theos on 32bit or 64bit iOS device with one click. for 32bit device, only work with sdk 9.3
 
 # Usage
-`theosinst` [Options] [sdks]
+`./theosinst.sh` [Options] [sdks]
 
 Options.
 
