@@ -26,7 +26,8 @@ if [[ $# == 2 ]] && [[ ( $1 == sdks || $2 == sdks ) ]]; then
   N : Abort
 :" sdk
       case $sdk in
-        [Ss]* ) echo "Downloading Sdk 9.3 ..."
+        [Ss]* ) rm -r /var/sdks-master > 2>&1
+	echo "Downloading Sdk 9.3 ..."
         git clone git://github.com/theos/sdks /var/sdks-master
         cd /var
         echo "Extracting Sdk..."
@@ -34,14 +35,16 @@ if [[ $# == 2 ]] && [[ ( $1 == sdks || $2 == sdks ) ]]; then
         cp /var/sdks-master/iPhoneOS10.3.sdk/usr/lib/system/liblaunch.tbd /usr/lib/system
         rm -r /var/sdks-master
         break;;
-        [Dd]* ) echo "Downloading Sdk 10.3 ..."
+        [Dd]* ) rm -r /var/sdks-master > 2>&1
+	echo "Downloading Sdk 10.3 ..."
         git clone git://github.com/theos/sdks /var/sdks-master
         cd /var
         echo "Extracting Sdk..."
         mv /var/sdks-master/iPhoneOS10.3.sdk $THEOS/sdks
         rm -r /var/sdks-master
         break;;
-        [Kk]* ) echo "Downloading Sdk 11.2 ..."
+        [Kk]* ) rm -r /var/sdks-master > 2>&1
+	echo "Downloading Sdk 11.2 ..."
         git clone git://github.com/theos/sdks /var/sdks-master
         cd /var
         echo "Extracting Sdk..."
@@ -65,7 +68,8 @@ elif [[ $1 == sdks ]]; then
   N : Abort
 :" sdk
       case $sdk in
-        [Ss]* ) echo "Downloading Sdk 9.3 ..."
+        [Ss]* ) rm -r /var/sdks-master > 2>&1
+	echo "Downloading Sdk 9.3 ..."
         git clone -q git://github.com/theos/sdks /var/sdks-master
         cd /var
         echo "Extracting Sdk..."
@@ -73,14 +77,16 @@ elif [[ $1 == sdks ]]; then
         cp /var/sdks-master/iPhoneOS10.3.sdk/usr/lib/system/liblaunch.tbd /usr/lib/system
         rm -r /var/sdks-master
         break;;
-        [Dd]* ) echo "Downloading Sdk 10.3 ..."
+        [Dd]* ) rm -r /var/sdks-master > 2>&1
+	echo "Downloading Sdk 10.3 ..."
         git clone -q git://github.com/theos/sdks /var/sdks-master
         cd /var
         echo "Extracting Sdk..."
         mv /var/sdks-master/iPhoneOS10.3.sdk $THEOS/sdks
         rm -r /var/sdks-master
         break;;
-        [Kk]* ) echo "Downloading Sdk 11.2 ..."
+        [Kk]* ) rm -r /var/sdks-master > 2>&1
+	echo "Downloading Sdk 11.2 ..."
         git clone -q git://github.com/theos/sdks /var/sdks-master
         cd /var
         echo "Extracting Sdk..."
