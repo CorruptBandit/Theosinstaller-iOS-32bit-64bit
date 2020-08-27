@@ -1,17 +1,158 @@
-#!/bin/bash
+!#/bin/bash
 
 if [[ ! $# -ne 0 ]]; then
 echo "Theos Installer"
 echo "Usage: theosinst [opt] [sdks]"
-echo opt.
-echo "-v : Verbose Mode"
+echo "Opt."
 echo "32 : for 32bit"
 echo "64 : for 64bit"
-echo sdks.
-echo "9.3 : sdk 9.3"
+echo "-v : Verbose Mode"
+echo "Sdks."
+echo "9.3  : sdk 9.3"
 echo "10.3 : sdk 10.3 (64bit only)"
 echo "11.2 : sdk 11.2 (64bit only)"
+echo "Single Opt."
+echo "sdks : Download sdk"
+echo "un   : Uninstall theos and everything"
 exit 1
+fi
+
+if [[ $# == 2 ]] && [[ ( $1 == sdks || $2 == sdks ) ]]; then
+	while true; do
+    	read -p "Please Choose Sdk : 
+  S : Sdk 9.3
+  D : Sdk 10.3 (for 64bit only)
+  K : Sdk 11.2 (for 64bit only)
+  N : Abort
+:" sdk
+      case $sdk in
+        [Ss]* ) echo "Downloading Sdk 9.3 ..."
+        git clone git://github.com/theos/sdks /var/sdks-master
+        cd /var
+        echo "Extracting Sdk..."
+        mv /var/sdks-master/iPhoneOS9.3.sdk $THEOS/sdks
+        cp /var/sdks-master/iPhoneOS10.3.sdk/usr/lib/system/liblaunch.tbd /usr/lib/system
+        rm -r /var/sdks-master
+        break;;
+        [Dd]* ) echo "Downloading Sdk 10.3 ..."
+        git clone git://github.com/theos/sdks /var/sdks-master
+        cd /var
+        echo "Extracting Sdk..."
+        mv /var/sdks-master/iPhoneOS10.3.sdk $THEOS/sdks
+        rm -r /var/sdks-master
+        break;;
+        [Kk]* ) echo "Downloading Sdk 11.2 ..."
+        git clone git://github.com/theos/sdks /var/sdks-master
+        cd /var
+        echo "Extracting Sdk..."
+        mv /var/sdks-master/iPhoneOS11.2.sdk $THEOS/sdks
+        rm -r /var/sdks-master
+        break;;
+        [Nn]* ) exit 1;;
+        * ) echo "Please answer yes or no.";;
+    	esac
+	done
+	update-theos
+	echo "Done!"
+	exit 0
+
+elif [[ $1 == sdks ]]; then
+	while true; do
+    	read -p "Please Choose Sdk : 
+  S : Sdk 9.3
+  D : Sdk 10.3 (for 64bit only)
+  K : Sdk 11.2 (for 64bit only)
+  N : Abort
+:" sdk
+      case $sdk in
+        [Ss]* ) echo "Downloading Sdk 9.3 ..."
+        git clone -q git://github.com/theos/sdks /var/sdks-master
+        cd /var
+        echo "Extracting Sdk..."
+        mv /var/sdks-master/iPhoneOS9.3.sdk $THEOS/sdks
+        cp /var/sdks-master/iPhoneOS10.3.sdk/usr/lib/system/liblaunch.tbd /usr/lib/system
+        rm -r /var/sdks-master
+        break;;
+        [Dd]* ) echo "Downloading Sdk 10.3 ..."
+        git clone -q git://github.com/theos/sdks /var/sdks-master
+        cd /var
+        echo "Extracting Sdk..."
+        mv /var/sdks-master/iPhoneOS10.3.sdk $THEOS/sdks
+        rm -r /var/sdks-master
+        break;;
+        [Kk]* ) echo "Downloading Sdk 11.2 ..."
+        git clone -q git://github.com/theos/sdks /var/sdks-master
+        cd /var
+        echo "Extracting Sdk..."
+        mv /var/sdks-master/iPhoneOS11.2.sdk $THEOS/sdks
+        rm -r /var/sdks-master
+        break;;
+        [Nn]* ) exit 1;;
+        * ) echo "Please answer yes or no.";;
+    	esac
+	done
+update-theos
+echo "Done!"
+exit 0
+
+fi
+
+if [[ $# == 2 ]] && [[ ( $1 == un || $2 == un ) ]]; then
+	while true; do
+    		read -p "Please Choose Your Device Arch : 
+  32 : 32bit
+  64 : 64bit
+  N  : Abort
+:" un
+      	case $un in
+      	[32]* ) echo "Uninstalling Theos and everything..."
+      	apt-get -y remove com.moose.theosinst org.coolstar.perl org.coolstar.llvm-clang32 git org.coolstar.cctools
+      	apt-get autoremove
+      	rm -r /var/theos
+      	break;;
+      	[64]* )
+      	echo "Uninstalling Theos and everything..."
+      	apt-get -y remove com.moose.theosinst perl git odcctools clang clang-10
+      	apt-get autoremove
+      	rm -r /var/theos
+      	break;;
+      	 [Nn]* ) exit 1;;
+        * ) echo "Please answer yes or no.";;
+    	esac
+	done
+echo "Done!, Thanks mate!"
+echo "your phone will respring..."
+uicache
+killall -9 backboardd
+
+elif [[ $1 == un ]]; then
+	while true; do
+    		read -p "Please Choose Your Device Arch : 
+  32 : 32bit
+  64 : 64bit
+  N  : Abort
+:" un
+      case $un in
+      	[32]* ) echo "Uninstalling Theos and everything..."
+      	apt-get -y remove com.moose.theosinst org.coolstar.perl org.coolstar.llvm-clang32 git org.coolstar.cctools > /dev/null 2>&1
+      	apt-get autoremove
+      	rm -r /var/theos
+      	break;;
+      	[64]* )
+      	echo "Uninstalling Theos and everything..."
+      	apt-get -y remove com.moose.theosinst perl git odcctools clang clang-10 > /dev/null 2>&1
+      	apt-get autoremove
+      	rm -r /var/theos
+      	break;;
+      	 [Nn]* ) exit 1;;
+        * ) echo "Please answer yes or no.";;
+    	esac
+	done
+echo "Done!, Thanks mate!"
+echo "your phone will respring..."
+uicache
+killall -9 backboardd
+
 fi
 
 echo -n -e "..."
@@ -24,7 +165,7 @@ echo -n -e "..."
    echo -n -e "
 "
    sleep 1;
-
+   
 arch32="32"
 arch64="64"
 if [[ ( $1 == $arch32 || $2 == $arch32 ) ]] && [[ $# == 3 ]]; then
@@ -145,37 +286,83 @@ else
 fi
 echo "Done!"
 
-if [[ $# == 2 ]]; then
-	echo "Downloading Sdk..."
-	git clone -q git://github.com/theos/sdks /var/sdks-master
-else
-	git clone git://github.com/theos/sdks /var/sdks-master
-	
-fi
-
 s="9.3"
 d="10.3"
 k="11.2"
-if [[ $3 == $s ]] || [[ $2 == $s ]]; then
-	cd /var
-	echo "Extracting Sdk..."
-	mv /var/sdks-master/iPhoneOS9.3.sdk $THEOS/sdks
-	cp /var/sdks-master/iPhoneOS10.3.sdk/usr/lib/system/liblaunch.tbd /usr/lib/system
-	rm -r /var/sdks-master
-elif [[ $3 == $d ]] || [[ $2 == $d ]]; then
-	cd /var
-	echo "Extracting Sdk..."
-	mv /var/sdks-master/iPhoneOS10.3.sdk $THEOS/sdks
-	rm -r /var/sdks-master
-elif [[ $3 == $k ]] || [[ $2 == $k ]]; then
-	cd /var
-	echo "Extracting Sdk..."
-	mv /var/sdks-master/iPhoneOS11.2.sdk $THEOS/sdks
-	rm -r /var/sdks-master
-	
-fi
+while true; do
+    read -p "Do you wish to download Sdk? [y/nah, i’ll do later]: " yn
+    case $yn in
+        [Yy]* ) if [[ $# == 2 ]] && [[ $2 == $s ]]; then
+        echo "Downloading Sdk..."
+        git clone -q git://github.com/theos/sdks /var/sdks-master
+        cd /var
+        echo "Extracting Sdk..."
+        mv /var/sdks-master/iPhoneOS9.3.sdk $THEOS/sdks
+        cp /var/sdks-master/iPhoneOS10.3.sdk/usr/lib/system/liblaunch.tbd /usr/lib/system
+        rm -r /var/sdks-master
+        
+        elif [[ $# == 2 ]] && [[ $2 == $d ]]; then
+        echo "Downloading Sdk..."
+        git clone -q git://github.com/theos/sdks /var/sdks-master
+        cd /var
+        echo "Extracting Sdk..."
+        mv /var/sdks-master/iPhoneOS10.3.sdk $THEOS/sdks
+        rm -r /var/sdks-master
+        
+        elif [[ $# == 2 ]] && [[ $2 == $k ]]; then
+        echo "Downloading Sdk..."
+        git clone -q git://github.com/theos/sdks /var/sdks-master
+        cd /var
+        echo "Extracting Sdk..."
+        mv /var/sdks-master/iPhoneOS11.2.sdk $THEOS/sdks
+        rm -r /var/sdks-master
+        
+        else
+        		if [[ $# == 3 ]] && [[ $3 == $s ]]; then
+        				echo "Downloading Sdk..."
+        				git clone git://github.com/theos/sdks /var/sdks-master
+        				cd /var
+        				echo "Extracting Sdk..."
+        				mv /var/sdks-master/iPhoneOS9.3.sdk $THEOS/sdks
+        				cp /var/sdks-master/iPhoneOS10.3.sdk/usr/lib/system/liblaunch.tbd /usr/lib/system
+        				rm -r /var/sdks-master
+        			
+        			elif [[ $# == 3 ]] && [[ $3 == $d ]]; then
+        				echo "Downloading Sdk..."
+        				git clone git://github.com/theos/sdks /var/sdks-master
+        				cd /var
+        				echo "Extracting Sdk..."
+        				mv /var/sdks-master/iPhoneOS10.3.sdk $THEOS/sdks
+        				rm -r /var/sdks-master
+        				
+        			elif [[ $# == 3 ]] && [[ $3 == $k ]]; then
+        				echo "Downloading Sdk..."
+        				git clone git://github.com/theos/sdks /var/sdks-master
+        				cd /var
+        				echo "Extracting Sdk..."
+        				mv /var/sdks-master/iPhoneOS11.2.sdk $THEOS/sdks
+        				rm -r /var/sdks-master
+						fi
+					fi
+     break;;
+        [Nn]* ) echo "Done!"
+echo "Note : “you can download sdk with 'sdks' opt.”"
+$THEOS/bin/update-theos
+echo -n "..."
+sleep 1;
+echo -n -e "
+..."
+sleep 1;
+echo -n -e "
+..."
+sleep 1;
+echo "
+Successful!"
+exit 0 ;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
 echo "Done!"
-
 $THEOS/bin/update-theos
 echo -n "..."
 sleep 1;
