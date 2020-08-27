@@ -318,32 +318,32 @@ while true; do
         rm -r /var/sdks-master
         
         else
-        		if [[ $# == 3 ]] && [[ $3 == $s ]]; then
-        				echo "Downloading Sdk..."
-        				git clone git://github.com/theos/sdks /var/sdks-master
-        				cd /var
-        				echo "Extracting Sdk..."
-        				mv /var/sdks-master/iPhoneOS9.3.sdk $THEOS/sdks
-        				cp /var/sdks-master/iPhoneOS10.3.sdk/usr/lib/system/liblaunch.tbd /usr/lib/system
-        				rm -r /var/sdks-master
+        	if [[ $# == 3 ]] && [[ $3 == $s ]]; then
+        		echo "Downloading Sdk..."
+        		git clone git://github.com/theos/sdks /var/sdks-master
+        		cd /var
+      	  		echo "Extracting Sdk..."
+        		mv /var/sdks-master/iPhoneOS9.3.sdk $THEOS/sdks
+        		cp /var/sdks-master/iPhoneOS10.3.sdk/usr/lib/system/liblaunch.tbd /usr/lib/system
+        		rm -r /var/sdks-master
         			
-        			elif [[ $# == 3 ]] && [[ $3 == $d ]]; then
-        				echo "Downloading Sdk..."
-        				git clone git://github.com/theos/sdks /var/sdks-master
-        				cd /var
-        				echo "Extracting Sdk..."
-        				mv /var/sdks-master/iPhoneOS10.3.sdk $THEOS/sdks
-        				rm -r /var/sdks-master
+        	elif [[ $# == 3 ]] && [[ $3 == $d ]]; then
+        		echo "Downloading Sdk..."
+        		git clone git://github.com/theos/sdks /var/sdks-master
+        		cd /var
+        		echo "Extracting Sdk..."
+        		mv /var/sdks-master/iPhoneOS10.3.sdk $THEOS/sdks
+        		rm -r /var/sdks-master
         				
-        			elif [[ $# == 3 ]] && [[ $3 == $k ]]; then
-        				echo "Downloading Sdk..."
-        				git clone git://github.com/theos/sdks /var/sdks-master
-        				cd /var
-        				echo "Extracting Sdk..."
-        				mv /var/sdks-master/iPhoneOS11.2.sdk $THEOS/sdks
-        				rm -r /var/sdks-master
-						fi
-					fi
+        	elif [[ $# == 3 ]] && [[ $3 == $k ]]; then
+        		echo "Downloading Sdk..."
+        		git clone git://github.com/theos/sdks /var/sdks-master
+        		cd /var
+        		echo "Extracting Sdk..."
+        		mv /var/sdks-master/iPhoneOS11.2.sdk $THEOS/sdks
+        		rm -r /var/sdks-master
+		fi
+fi
      break;;
         [Nn]* ) echo "Done!"
 echo "Note : “you can download sdk with 'sdks' opt.”"
