@@ -1,4 +1,4 @@
-!#/bin/bash
+#!/bin/bash
 
 if [[ ! $# -ne 0 ]]; then
 echo "Theos Installer"
