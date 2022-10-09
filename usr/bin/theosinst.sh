@@ -27,8 +27,8 @@ if [[ $# == 2 ]] && [[ ( $1 == sdks || $2 == sdks ) ]]; then
 :" sdk
       case $sdk in
         [Ss]* ) rm -r /var/sdks-master > /dev/null 2>&1
-	echo "Downloading Sdk 9.3 ..."
-        git clone git://github.com/theos/sdks /var/sdks-master
+        echo "Downloading Sdk 9.3 ..."
+        git clone https://github.com/theos/sdks.git /var/sdks-master
         cd /var
         echo "Extracting Sdk..."
         mv /var/sdks-master/iPhoneOS9.3.sdk $THEOS/sdks
@@ -36,16 +36,16 @@ if [[ $# == 2 ]] && [[ ( $1 == sdks || $2 == sdks ) ]]; then
         rm -r /var/sdks-master
         break;;
         [Dd]* ) rm -r /var/sdks-master > /dev/null 2>&1
-	echo "Downloading Sdk 10.3 ..."
-        git clone git://github.com/theos/sdks /var/sdks-master
+        echo "Downloading Sdk 10.3 ..."
+        git clone https://github.com/theos/sdks.git /var/sdks-master
         cd /var
         echo "Extracting Sdk..."
         mv /var/sdks-master/iPhoneOS10.3.sdk $THEOS/sdks
         rm -r /var/sdks-master
         break;;
         [Kk]* ) rm -r /var/sdks-master > /dev/null 2>&1
-	echo "Downloading Sdk 11.2 ..."
-        git clone git://github.com/theos/sdks /var/sdks-master
+        echo "Downloading Sdk 11.2 ..."
+        git clone https://github.com/theos/sdks.git /var/sdks-master
         cd /var
         echo "Extracting Sdk..."
         mv /var/sdks-master/iPhoneOS11.2.sdk $THEOS/sdks
@@ -69,8 +69,8 @@ elif [[ $1 == sdks ]]; then
 :" sdk
       case $sdk in
         [Ss]* ) rm -r /var/sdks-master > /dev/null 2>&1
-	echo "Downloading Sdk 9.3 ..."
-        git clone -q git://github.com/theos/sdks /var/sdks-master
+        echo "Downloading Sdk 9.3 ..."
+        git clone -q https://github.com/theos/sdks.git /var/sdks-master
         cd /var
         echo "Extracting Sdk..."
         mv /var/sdks-master/iPhoneOS9.3.sdk $THEOS/sdks
@@ -78,16 +78,16 @@ elif [[ $1 == sdks ]]; then
         rm -r /var/sdks-master
         break;;
         [Dd]* ) rm -r /var/sdks-master > /dev/null 2>&1
-	echo "Downloading Sdk 10.3 ..."
-        git clone -q git://github.com/theos/sdks /var/sdks-master
+        echo "Downloading Sdk 10.3 ..."
+        git clone -q https://github.com/theos/sdks.git /var/sdks-master
         cd /var
         echo "Extracting Sdk..."
         mv /var/sdks-master/iPhoneOS10.3.sdk $THEOS/sdks
         rm -r /var/sdks-master
         break;;
         [Kk]* ) rm -r /var/sdks-master > /dev/null 2>&1
-	echo "Downloading Sdk 11.2 ..."
-        git clone -q git://github.com/theos/sdks /var/sdks-master
+        echo "Downloading Sdk 11.2 ..."
+        git clone -q https://github.com/theos/sdks.git /var/sdks-master
         cd /var
         echo "Extracting Sdk..."
         mv /var/sdks-master/iPhoneOS11.2.sdk $THEOS/sdks
@@ -100,7 +100,6 @@ elif [[ $1 == sdks ]]; then
 update-theos
 echo "Done!"
 exit 0
-
 fi
 
 if [[ $# == 2 ]] && [[ ( $1 == un || $2 == un ) ]]; then
@@ -240,11 +239,11 @@ fi
 if [[ $# == 2 ]]; then
 	echo "Installing theos..."
 	rm -r /var/theos > /dev/null 2>&1
-	git clone -q git://github.com/theos/theos /var/theos
+	git clone -q https://github.com/theos/theos /var/theos
 else
 	echo "Installing theos..."
 	rm -r /var/theos > /dev/null 2>&1
-	git clone git://github.com/theos/theos /var/theos
+	git clone https://github.com/theos/theos /var/theos
 	
 fi
 
@@ -254,21 +253,21 @@ if [[ $# == 2 ]]; then
 	echo "Updating Theos..."
 	git submodule init
 	echo "Cloning into theos/dm.pl"
-	git clone -q git://github.com/theos/dm.pl.git $THEOS/dm.pl
+	git clone -q https://github.com/theos/dm.pl.git $THEOS/dm.pl
 	echo "Cloning into theos/vendor/dm.pl"
-	git clone -q git://github.com/theos/dm.pl.git $THEOS/vendor/dm.pl
+	git clone -q https://github.com/theos/dm.pl.git $THEOS/vendor/dm.pl
 	echo "Cloning into theos/vendor/headers"
-	git clone -q git://github.com/theos/headers.git $THEOS/vendor/headers
+	git clone -q https://github.com/theos/headers.git $THEOS/vendor/headers
 	echo "Cloning into theos/vendor/include"
-	git clone -q git://github.com/theos/headers.git $THEOS/vendor/include
+	git clone -q https://github.com/theos/headers.git $THEOS/vendor/include
 	echo "Cloning into theos/vendor/lib"
-	git clone -q git://github.com/theos/lib.git $THEOS/vendor/lib
+	git clone -q https://github.com/theos/lib.git $THEOS/vendor/lib
 	echo "Cloning into theos/vendor/logos"
-	git clone -q git://github.com/theos/logos.git $THEOS/vendor/logos
+	git clone -q https://github.com/theos/logos.git $THEOS/vendor/logos
 	echo "Cloning into theos/vendor/nic"
-	git clone -q git://github.com/theos/nic.git $THEOS/vendor/nic
+	git clone -q https://github.com/theos/nic.git $THEOS/vendor/nic
 	echo "Cloning into theos/vendor/templates"
-	git clone -q git://github.com/theos/templates.git $THEOS/vendor/templates
+	git clone -q https://github.com/theos/templates.git $THEOS/vendor/templates
 	rm -rf $THEOS/lib
 	rm -rf $THEOS/include
 	ln -sf $THEOS/vendor/lib $THEOS/lib
@@ -276,14 +275,14 @@ if [[ $# == 2 ]]; then
 else
 	echo "Updating Theos..."
 	git submodule init
-	git clone git://github.com/theos/dm.pl.git $THEOS/dm.pl
-	git clone git://github.com/theos/dm.pl.git $THEOS/vendor/dm.pl
-	git clone git://github.com/theos/headers.git $THEOS/vendor/headers
-	git clone git://github.com/theos/headers.git $THEOS/vendor/include
-	git clone git://github.com/theos/lib.git $THEOS/vendor/lib
-	git clone git://github.com/theos/logos.git $THEOS/vendor/logos
-	git clone git://github.com/theos/nic.git $THEOS/vendor/nic
-	git clone git://github.com/theos/templates.git $THEOS/vendor/templates
+	git clone https://github.com/theos/dm.pl.git $THEOS/dm.pl
+	git clone https://github.com/theos/dm.pl.git $THEOS/vendor/dm.pl
+	git clone https://github.com/theos/headers.git $THEOS/vendor/headers
+	git clone https://github.com/theos/headers.git $THEOS/vendor/include
+	git clone https://github.com/theos/lib.git $THEOS/vendor/lib
+	git clone https://github.com/theos/logos.git $THEOS/vendor/logos
+	git clone https://github.com/theos/nic.git $THEOS/vendor/nic
+	git clone https://github.com/theos/templates.git $THEOS/vendor/templates
 	rm -rf $THEOS/lib
 	rm -rf $THEOS/include
 	ln -sf $THEOS/vendor/lib $THEOS/lib
@@ -300,7 +299,7 @@ while true; do
     case $yn in
         [Yy]* ) if [[ $# == 2 ]] && [[ $2 == $s ]]; then
         echo "Downloading Sdk..."
-        git clone -q git://github.com/theos/sdks /var/sdks-master
+        git clone -q https://github.com/theos/sdks.git /var/sdks-master
         cd /var
         echo "Extracting Sdk..."
         mv /var/sdks-master/iPhoneOS9.3.sdk $THEOS/sdks
@@ -309,7 +308,7 @@ while true; do
         
         elif [[ $# == 2 ]] && [[ $2 == $d ]]; then
         echo "Downloading Sdk..."
-        git clone -q git://github.com/theos/sdks /var/sdks-master
+        git clone -q https://github.com/theos/sdks.git /var/sdks-master
         cd /var
         echo "Extracting Sdk..."
         mv /var/sdks-master/iPhoneOS10.3.sdk $THEOS/sdks
@@ -317,39 +316,39 @@ while true; do
         
         elif [[ $# == 2 ]] && [[ $2 == $k ]]; then
         echo "Downloading Sdk..."
-        git clone -q git://github.com/theos/sdks /var/sdks-master
+        git clone -q https://github.com/theos/sdks.git /var/sdks-master
         cd /var
         echo "Extracting Sdk..."
         mv /var/sdks-master/iPhoneOS11.2.sdk $THEOS/sdks
         rm -r /var/sdks-master
         
         else
-        	if [[ $# == 3 ]] && [[ $3 == $s ]]; then
-        		echo "Downloading Sdk..."
-        		git clone git://github.com/theos/sdks /var/sdks-master
-        		cd /var
-      	  		echo "Extracting Sdk..."
-        		mv /var/sdks-master/iPhoneOS9.3.sdk $THEOS/sdks
-        		cp /var/sdks-master/iPhoneOS10.3.sdk/usr/lib/system/liblaunch.tbd /usr/lib/system
-        		rm -r /var/sdks-master
+        		if [[ $# == 3 ]] && [[ $3 == $s ]]; then
+        				echo "Downloading Sdk..."
+        				git clone https://github.com/theos/sdks.git /var/sdks-master
+        				cd /var
+        				echo "Extracting Sdk..."
+        				mv /var/sdks-master/iPhoneOS9.3.sdk $THEOS/sdks
+        				cp /var/sdks-master/iPhoneOS10.3.sdk/usr/lib/system/liblaunch.tbd /usr/lib/system
+        				rm -r /var/sdks-master
         			
-        	elif [[ $# == 3 ]] && [[ $3 == $d ]]; then
-        		echo "Downloading Sdk..."
-        		git clone git://github.com/theos/sdks /var/sdks-master
-        		cd /var
-        		echo "Extracting Sdk..."
-        		mv /var/sdks-master/iPhoneOS10.3.sdk $THEOS/sdks
-        		rm -r /var/sdks-master
+        			elif [[ $# == 3 ]] && [[ $3 == $d ]]; then
+        				echo "Downloading Sdk..."
+        				git clone https://github.com/theos/sdks.git /var/sdks-master
+        				cd /var
+        				echo "Extracting Sdk..."
+        				mv /var/sdks-master/iPhoneOS10.3.sdk $THEOS/sdks
+        				rm -r /var/sdks-master
         				
-        	elif [[ $# == 3 ]] && [[ $3 == $k ]]; then
-        		echo "Downloading Sdk..."
-        		git clone git://github.com/theos/sdks /var/sdks-master
-        		cd /var
-        		echo "Extracting Sdk..."
-        		mv /var/sdks-master/iPhoneOS11.2.sdk $THEOS/sdks
-        		rm -r /var/sdks-master
-		fi
-fi
+        			elif [[ $# == 3 ]] && [[ $3 == $k ]]; then
+        				echo "Downloading Sdk..."
+        				git clone https://github.com/theos/sdks.git /var/sdks-master
+        				cd /var
+        				echo "Extracting Sdk..."
+        				mv /var/sdks-master/iPhoneOS11.2.sdk $THEOS/sdks
+        				rm -r /var/sdks-master
+						fi
+					fi
      break;;
         [Nn]* ) echo "Done!"
 echo "Note : “you can download sdk with 'sdks' opt.”"
