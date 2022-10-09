@@ -21,15 +21,5 @@ Sdks.
 11.2
 
 # Change Log
-Vers 1.4.1
-- added new command to download sdks manually.
-
-- added new command to completely uninstall theos and its dependencies.
-
-- speed up installing process by divide the downloading sdks part, you'll be prompt to choose either to download sdk or do it later with sdks opt.
-
-- replaced unused code.
-
-- remove some unused dependencies.
-
-- fixing some bugs.
+Vers 1.4.2
+- Fix the script from failing to git clone
